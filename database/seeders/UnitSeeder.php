@@ -13,13 +13,17 @@ class UnitSeeder extends Seeder {
         $units = [
             [
                 'name' => 'General Support',
+                'unit_code' => 'GS',
             ],
             [
                 'name' => 'Unit Produksi 1/2',
+                'unit_code' => 'UP1/2',
             ], [
                 'name' => 'Unit Produksi 3',
+                'unit_code' => 'UP3',
             ], [
                 'name' => 'Unit Cogen/Soda',
+                'unit_code' => 'UC/S',
             ],
         ];
 

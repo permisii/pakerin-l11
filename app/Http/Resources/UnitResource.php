@@ -15,6 +15,7 @@ class UnitResource extends JsonResource {
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'unit_code' => $this->unit_code,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
 

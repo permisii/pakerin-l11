@@ -68,14 +68,14 @@
                             </a>
                         </li>
 
-                        {{--                        <li class="nav-header">DATA INDUK</li>--}}
-                        {{--                        <li class="nav-item">--}}
-                        {{--                            <a href="{{ route('master.unit.index') }}"--}}
-                        {{--                               class="nav-link {{ Request::is('master/unit*') ? 'active' : '' }}">--}}
-                        {{--                                <i class="nav-icon fas fa-fw fa-tags"></i>--}}
-                        {{--                                <p>Unit </p>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
+                        <li class="nav-header">DATA INDUK</li>
+                        <li class="nav-item">
+                            <a href="{{ route('units.index') }}"
+                               class="nav-link {{ Request::is('units*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-fw fa-building"></i>
+                                <p>Unit </p>
+                            </a>
+                        </li>
 
                         {{--                        <li class="nav-header">OPERASIONAL</li>--}}
                         {{--                        <li class="nav-item">--}}

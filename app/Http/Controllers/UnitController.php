@@ -2,57 +2,74 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\UnitsDataTable;
 use App\Http\Requests\Unit\StoreUnitRequest;
 use App\Http\Requests\Unit\UpdateUnitRequest;
+use App\Http\Resources\UnitResource;
 use App\Models\Unit;
 
 class UnitController extends Controller {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index() {
-        //
+    public function index(UnitsDataTable $dataTable) {
+        $this->setBreadcrumbs([
+            'Home' => route('dashboard'),
+            'Units' => '',
+        ]);
+
+        return $dataTable->render('units.index', ['breadcrumbs' => $this->getBreadcrumbs()]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create() {
-        //
+        $units = UnitResource::collection(Unit::all());
+
+        $this->setBreadcrumbs([
+            'Home' => route('dashboard'),
+            'Units' => route('units.index'),
+            'Create' => '',
+        ]);
+
+        return $this->renderView('units.create', ['units' => $units]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreUnitRequest $request) {
-        //
+        Unit::create($request->validated());
+
+        return redirect()->route('units.index')->with('success', 'Unit created.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Unit $unit) {
-        //
+        $unit = new UnitResource($unit->load('unit', 'updatedBy', 'createdBy'));
+
+        $this->setBreadcrumbs([
+            'Home' => route('dashboard'),
+            'Units' => route('units.index'),
+            $unit->name => '',
+        ]);
+
+        return $this->renderView('units.show', ['unit' => $unit]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Unit $unit) {
-        //
+        $unit = new UnitResource($unit);
+
+        $this->setBreadcrumbs([
+            'Home' => route('dashboard'),
+            'Units' => route('units.index'),
+            $unit->name => route('units.show', $unit->id),
+            'Edit' => '',
+        ]);
+
+        return $this->renderView('units.edit', ['unit' => $unit]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateUnitRequest $request, Unit $unit) {
-        //
+        $unit->update($request->validated());
+
+        return redirect()->route('units.index')->with('success', 'Unit updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Unit $unit) {
-        //
+        $unit->delete();
+
+        return redirect()->route('units.index')->with('success', 'Unit deleted.');
     }
 }

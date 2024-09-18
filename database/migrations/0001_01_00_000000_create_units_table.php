@@ -12,6 +12,7 @@ return new class extends Migration {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('unit_code')->unique();
             $table->foreignId('updated_by')->nullable()->index();
             $table->foreignId('created_by')->nullable()->index();
             $table->timestamps();

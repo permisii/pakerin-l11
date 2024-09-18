@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
+use App\Models\Unit;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -10,7 +10,7 @@ use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class UsersDataTable extends DataTable {
+class UnitsDataTable extends DataTable {
     /**
      * Build the DataTable class.
      *
@@ -18,28 +18,15 @@ class UsersDataTable extends DataTable {
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable {
         return (new EloquentDataTable($query))
-            ->addColumn('unit.name', function (User $user) {
-                return $user->unit->name;
-            })
-            ->addColumn('active', function (User $user) {
-                return $user->active ? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-danger">No</span>';
-            })
-            ->rawColumns(['active', 'action'])
-            ->addColumn('action', 'users.action')
+            ->addColumn('action', 'units.action')
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(User $model): QueryBuilder {
-        $query = $model->newQuery()->with('unit')->select('users.*');
-
-        if (request()->has('unit_id') && request()->unit_id != '') {
-            $query->where('unit_id', request()->unit_id);
-        }
-
-        return $query;
+    public function query(Unit $model): QueryBuilder {
+        return $model->newQuery();
     }
 
     /**
@@ -47,17 +34,17 @@ class UsersDataTable extends DataTable {
      */
     public function html(): HtmlBuilder {
         return $this->builder()
-            ->setTableId('users-table')
+            ->setTableId('units-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->selectStyleSingle()
             ->dom('<"d-block mb-2"B><"d-flex justify-content-between"lf>rtip')
-            ->addTableClass('w-100')
+            ->orderBy(1)
+            ->selectStyleSingle()
             ->buttons([
                 Button::make([
-                    'text' => '<i class="fas fa-plus"></i> Tambah User',
+                    'text' => '<i class="fas fa-plus"></i> Tambah Unit',
                     'action' => 'function() {
-                        window.location.href = "' . route('users.create') . '";
+                        window.location.href = "' . route('units.create') . '";
                     }',
                     'className' => 'btn btn-default text-blue',
                 ]),
@@ -74,11 +61,9 @@ class UsersDataTable extends DataTable {
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center'),
-            Column::make('nip'),
+            Column::make('id'),
             Column::make('name'),
-            Column::make('email'),
-            Column::make('unit.name')->title('Unit'),
-            Column::make('active')->title('Active'),
+            Column::make('unit_code'),
         ];
     }
 
@@ -86,6 +71,6 @@ class UsersDataTable extends DataTable {
      * Get the filename for export.
      */
     protected function filename(): string {
-        return 'Users_' . date('YmdHis');
+        return 'Units_' . date('YmdHis');
     }
 }

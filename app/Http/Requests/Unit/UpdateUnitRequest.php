@@ -19,8 +19,11 @@ class UpdateUnitRequest extends FormRequest {
      * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array {
+        $unitId = $this->route('unit')->id;
+
         return [
-            //
+            'name' => ['nullable', 'string', 'max:255'],
+            'unit_code' => ['nullable', 'string', 'max:255', 'unique:units,unit_code,' . $unitId],
         ];
     }
 }
