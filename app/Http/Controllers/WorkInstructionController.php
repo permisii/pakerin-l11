@@ -42,7 +42,7 @@ class WorkInstructionController extends Controller {
         $this->setBreadcrumbs([
             'Home' => route('dashboard'),
             'Work Instructions' => route('work-instructions.index'),
-            $workInstruction->name => '',
+            $workInstruction->id => '',
         ]);
 
         return $this->renderView('work-instructions.show', ['workInstruction' => $workInstruction]);

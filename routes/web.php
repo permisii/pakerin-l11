@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
@@ -13,6 +14,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('units', UnitController::class);
     Route::resource('work-instructions', WorkInstructionController::class);
+    Route::resource('work-instructions.assignments', AssignmentController::class);
 });
 
 Route::view('/', 'welcome')->name('home');
