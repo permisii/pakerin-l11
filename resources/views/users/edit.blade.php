@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action="{{ route('users.update', $user->id) }}" method="post" id="edit-form">
+    <form action="{{ route('users.update', $user->id) }}" method="post" id="update-form-{{$user->id}}"
+          onsubmit="confirmUpdate(event, {{$user->id}})">
         @csrf
         @method('PUT')
         <div class="row">
@@ -83,12 +84,12 @@
                         </a>
 
                         <div class="btn-group float-right">
-                            <button class="btn btn-default text-blue" onclick="confirmEdit">
+                            <button class="btn btn-default text-blue">
                                 <i class="fa fa-fw fa-save"></i>
-                                Simpan
+                                Ubah
                             </button>
 
-                            <a class="btn btn-default text-maroon">
+                            <a class="btn btn-default text-maroon" href="{{route('users.index')}}">
                                 <i class="fas fa-ban"></i>
                                 Batalkan
                             </a>

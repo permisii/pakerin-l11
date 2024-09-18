@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action="{{route('users.store')}}" method="post" id="create-form">
+    <form action="{{route('users.store')}}" method="post" id="create-form" onsubmit="confirmCreate(event)">
         @csrf
         <div class="row">
             <div class="col-12">
@@ -80,12 +80,12 @@
                         </a>
 
                         <div class="btn-group float-right">
-                            <button class="btn btn-default text-blue" onclick="confirmCreate">
+                            <button class="btn btn-default text-blue">
                                 <i class="fa fa-fw fa-save"></i>
                                 Simpan
                             </button>
 
-                            <a class="btn btn-default text-maroon">
+                            <a class="btn btn-default text-maroon" href="{{route('users.index')}}">
                                 <i class="fas fa-ban"></i>
                                 Batalkan
                             </a>

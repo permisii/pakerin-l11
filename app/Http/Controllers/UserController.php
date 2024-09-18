@@ -2,61 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\UsersDataTable;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Resources\UnitResource;
 use App\Http\Resources\UserResource;
 use App\Models\Unit;
 use App\Models\User;
-use App\Support\Enums\IntentEnum;
-use Illuminate\Http\Request;
 
 class UserController extends Controller {
-    public function index(Request $request) {
+    public function index(UsersDataTable $dataTable) {
+        $units = Unit::all();
+        $this->setBreadcrumbs([
+            'Home' => route('dashboard'),
+            'Users' => '',
+        ]);
 
-        $intent = $request->get('intent');
-
-        switch ($intent) {
-            case IntentEnum::USER_GET_DATATABLE_DATA:
-                $query = User::with('unit');
-
-                if ($request->has('unit_id') && $request->unit_id != '') {
-                    $query->where('unit_id', $request->unit_id);
-                }
-
-                return datatables()->eloquent($query)
-                    ->addColumn('options', function ($user) {
-                        return view('users.partials.options', compact('user'))->render();
-                    })
-                    ->editColumn('unit', function ($user) {
-                        return $user->unit->name;
-                    })
-                    ->editColumn('active', function ($user) {
-                        return $user->active ? '<span class="badge badge-success">YES</span>' : '<span class="badge badge-danger">NO</span>';
-                    })
-                    ->rawColumns(['options', 'active'])
-                    ->make(true);
-        }
-
-        if ($request->ajax()) {
-        }
-
-        $query = User::with('unit');
-
-        if ($request->has('unit_id') && $request->unit_id != '') {
-            $query->where('unit_id', $request->unit_id);
-        }
-
-        $users = UserResource::collection($query->paginate(5));
-        $units = UnitResource::collection(Unit::all());
-
-        return view('users.index', compact('users', 'units'));
+        return $dataTable->render('users.index', ['units' => $units, 'breadcrumbs' => $this->getBreadcrumbs()]);
     }
 
     public function create() {
         $units = UnitResource::collection(Unit::all());
 
-        return view('users.create', compact('units'));
+        $this->setBreadcrumbs([
+            'Home' => route('dashboard'),
+            'Users' => route('users.index'),
+            'Create' => '',
+        ]);
+
+        return $this->renderView('users.create', ['units' => $units]);
     }
 
     public function store(StoreUserRequest $request) {
@@ -68,14 +42,27 @@ class UserController extends Controller {
     public function show(User $user) {
         $user = new UserResource($user->load('unit', 'updatedBy', 'createdBy'));
 
-        return view('users.show', compact('user'));
+        $this->setBreadcrumbs([
+            'Home' => route('dashboard'),
+            'Users' => route('users.index'),
+            $user->name => '',
+        ]);
+
+        return $this->renderView('users.show', ['user' => $user]);
     }
 
     public function edit(User $user) {
         $units = UnitResource::collection(Unit::all());
         $user = new UserResource($user->load('unit', 'updatedBy', 'createdBy'));
 
-        return view('users.edit', compact('user', 'units'));
+        $this->setBreadcrumbs([
+            'Home' => route('dashboard'),
+            'Users' => route('users.index'),
+            $user->name => route('users.show', $user->id),
+            'Edit' => '',
+        ]);
+
+        return $this->renderView('users.edit', ['user' => $user, 'units' => $units]);
     }
 
     public function update(UpdateUserRequest $request, User $user) {

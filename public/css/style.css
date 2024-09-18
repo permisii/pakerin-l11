@@ -56,3 +56,16 @@ select.form-control-sm ~ .select2-container--default {
 [class*=sidebar-light-] .nav-sidebar > .nav-item > .nav-link.active {
     box-shadow: none;
 }
+
+/* Datatable */
+.action-btn {
+    padding: 0.5rem 1rem; /* Adjust padding as needed */
+    gap: 0.5rem; /* Adjust gap as needed */
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    display: flex;
+    width: fit-content; /* Ensure all buttons have the same width */
+    text-align: center;
+    white-space: nowrap;
+}

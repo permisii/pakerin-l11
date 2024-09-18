@@ -29,7 +29,8 @@
         );
     }
 
-    function confirmCreate() {
+    function confirmCreate(event) {
+        event.preventDefault();
         showConfirmationDialog(
             'Are you sure?',
             'You won\'t be able to revert this!',
@@ -40,7 +41,8 @@
         );
     }
 
-    function confirmUpdate(userId) {
+    function confirmUpdate(event, userId) {
+        event.preventDefault();
         showConfirmationDialog(
             'Are you sure?',
             'You won\'t be able to revert this!',
@@ -50,5 +52,4 @@
             },
         );
     }
-
 </script>

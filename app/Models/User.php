@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -51,21 +52,21 @@ class User extends Authenticatable {
     /**
      * Get the unit that owns the user.
      */
-    public function unit() {
+    public function unit(): BelongsTo {
         return $this->belongsTo(Unit::class);
     }
 
     /**
      * Get the user that owns the user.
      */
-    public function updatedBy() {
+    public function updatedBy(): BelongsTo {
         return $this->belongsTo(User::class, 'updated_by');
     }
 
     /**
      * Get the user that owns the user.
      */
-    public function createdBy() {
+    public function createdBy(): BelongsTo {
         return $this->belongsTo(User::class, 'created_by');
     }
 }

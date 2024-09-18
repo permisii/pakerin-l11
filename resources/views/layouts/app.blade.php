@@ -124,15 +124,13 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                @isset($params['breadcrumb'])
-                                    @php $last_key = array_key_last($params['breadcrumb']); @endphp
-                                    @foreach ($params['breadcrumb'] as $k => $v)
-                                        {!! $k == $last_key
-                                            ? '<li class="breadcrumb-item">' . $k . '</li>'
-                                            : '<li class="breadcrumb-item"><a href="' . $v . '">' . $k . '</a></li>' !!}
-                                    @endforeach
-                                @endisset
+                                @foreach ($breadcrumbs ?? [] as $name => $url)
+                                    @if ($url)
+                                        <li class="breadcrumb-item"><a href="{{ $url }}">{{ $name }}</a></li>
+                                    @else
+                                        <li class="breadcrumb-item active">{{ $name }}</li>
+                                    @endif
+                                @endforeach
                             </ol>
                         </div>
                     </div>

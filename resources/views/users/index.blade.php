@@ -34,67 +34,7 @@
                     </div>
                 </form>
 
-                <a href="{{route('users.create')}}" class="btn btn-default text-blue">
-                    <i class="fas fa-plus"></i>
-                    Tambah User
-                </a>
-
-                <table id="data-table" class="table table-bordered table-striped table-hover nowrap">
-                    <thead>
-                    <th>OPTIONS</th>
-                    <th>NIP</th>
-                    <th>NAMA LENGKAP</th>
-                    <th>UNIT</th>
-                    <th>AKTIF</th>
-                    </thead>
-
-                    <tbody>
-                    @foreach($users as $user)
-                        <tr>
-                            <td>
-                                <div class="btn-group">
-                                    <a href="{{ route('users.show', 1) }}"
-                                       class="btn btn-sm btn-default text-blue"><i class="fas fa-info-circle"></i>
-                                        Detail</a>
-                                    <form action="{{route('users.destroy', $user->id)}}" method="post"
-                                          id="delete-form-{{$user->id}}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" onclick="confirmDelete({{ $user->id }})"
-                                                class="btn btn-sm btn-default text-danger"><i
-                                                class="fas fa-trash"></i> Delete
-                                        </button>
-                                    </form>
-                                    <button onclick="resetpass()" class="btn btn-sm btn-default text-info"><i
-                                            class="fas fa-fw fa-lock-open"></i> Reset Pass
-                                    </button>
-                                    {{--                                <a href="{{ route('users.akses') }}" class="btn btn-sm btn-default text-blue"><i--}}
-                                    {{--                                        class="fas fa-check"></i> Akses</a>--}}
-                                    <a href="{{route('users.edit', $user->id)}}"
-                                       class="btn btn-sm btn-default text-blue">
-                                        <i class="fas fa-edit"></i>
-                                        Edit
-                                    </a>
-                                </div>
-                            </td>
-                            <td>{{$user->nip}}</td>
-                            <td>{{$user->name}}</td>
-                            <td>{{$user->unit->name}}</td>
-                            <td>
-                                @if($user->active)
-                                    <span class="badge badge-success">YES</span>
-                                @else
-                                    <span class="badge badge-danger">NO</span>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-
-                <div class="d-flex my-2">
-                    {{ $users->links() }}
-                </div>
+                {{$dataTable->table()}}
             </div>
         </div>
     </div>
@@ -102,18 +42,5 @@
 @endsection
 
 @section('scripts')
-    <script !src="">
-        $(document).ready(function() {
-            $('#data-table').DataTable({
-                'scrollX': true,
-                'paging': false,
-                'lengthChange': false,
-                'searching': false,
-                'ordering': true,
-                'info': false,
-                'autoWidth': false,
-                'responsive': true,
-            });
-        });
-    </script>
+    {{$dataTable->scripts()}}
 @endsection
