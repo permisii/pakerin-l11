@@ -37,14 +37,14 @@
                              alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">User Demo</a>
+                        <a href="#" class="d-block">{{auth()->user()->name}}</a>
                     </div>
                 </div>
 
                 <div class="btn-group btn-block border-bottom pb-3">
-                    <button onclick="alert('Go to change password page')" class="btn btn-default btn-sm"><i
+                    <a href="{{route('users.show', auth()->user()->id)}}" class="btn btn-default btn-sm"><i
                             class="fas fa-user"></i> User Profile
-                    </button>
+                    </a>
                     <a href="{{ route('login') }}" class="btn btn-default btn-sm"><i
                             class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>

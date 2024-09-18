@@ -12,7 +12,7 @@
                      alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"> {{ auth()->user()->nama ?? '' }} </a>
+                <a href="#" class="d-block"> {{ auth()->user()->name ?? '' }} </a>
             </div>
         </div>
 
