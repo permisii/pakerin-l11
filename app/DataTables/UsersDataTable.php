@@ -19,7 +19,7 @@ class UsersDataTable extends DataTable {
     public function dataTable(QueryBuilder $query): EloquentDataTable {
         return (new EloquentDataTable($query))
             ->addColumn('unit.name', function (User $user) {
-                return $user->unit->name;
+                return $user->unit->name ?? '-';
             })
             ->addColumn('active', function (User $user) {
                 return $user->active ? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-danger">No</span>';
