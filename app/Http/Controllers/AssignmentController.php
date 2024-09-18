@@ -30,7 +30,7 @@ class AssignmentController extends Controller {
         $this->setBreadcrumbs([
             'Home' => route('dashboard'),
             'Work Instructions' => route('work-instructions.index'),
-            $workInstruction->name => route('work-instructions.show', $workInstruction->id),
+            $workInstruction->id => route('work-instructions.show', $workInstruction->id),
             'Create Assignment' => '',
         ]);
 
@@ -54,7 +54,7 @@ class AssignmentController extends Controller {
         $this->setBreadcrumbs([
             'Home' => route('dashboard'),
             'Work Instructions' => route('work-instructions.index'),
-            $workInstruction->name => route('work-instructions.show', $workInstruction->id),
+            $workInstruction->id => route('work-instructions.show', $workInstruction->id),
             $assignment->name => '',
         ]);
 
@@ -70,7 +70,7 @@ class AssignmentController extends Controller {
         $this->setBreadcrumbs([
             'Home' => route('dashboard'),
             'Work Instructions' => route('work-instructions.index'),
-            $workInstruction->name => route('work-instructions.show', $workInstruction->id),
+            $workInstruction->id => route('work-instructions.show', $workInstruction->id),
             $assignment->name => route('work-instructions.assignments.show', [$workInstruction->id, $assignment->id]),
             'Edit' => '',
         ]);

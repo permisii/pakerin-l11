@@ -59,7 +59,7 @@
                                 <p>Dashboard </p>
                             </a>
                         </li>
-                        <li class="nav-header">ADMINISTRASI</li>
+                        <li class="nav-header">ADMINISTRATION</li>
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}"
                                class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
@@ -68,7 +68,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-header">DATA INDUK</li>
+                        <li class="nav-header">MASTER DATA</li>
                         <li class="nav-item">
                             <a href="{{ route('units.index') }}"
                                class="nav-link {{ Request::is('units*') ? 'active' : '' }}">
@@ -77,34 +77,32 @@
                             </a>
                         </li>
 
-                        <li class="nav-header">OPERASIONAL</li>
+                        <li class="nav-header">OPERATIONAL</li>
                         <li class="nav-item">
                             <a href="{{ route('work-instructions.index') }}"
                                class="nav-link {{ Request::is('work-instructions*') ? 'active' : '' }}">
                                 <i class="nav-icon far fa-fw  fa-calendar-alt"></i>
-                                <p>Instruksi Kerja </p>
+                                <p>Work Instructions </p>
                             </a>
                         </li>
 
-                        {{--                        <li class="nav-item">--}}
-                        {{--                            <a href="{{ route('operation.reporting.index') }}"--}}
-                        {{--                               class="nav-link {{ Request::is('operation/reporting*') ? 'active' : '' }}">--}}
-                        {{--                                <i class="nav-icon far fa-fw  fa-calendar-alt"></i>--}}
-                        {{--                                <p>Daily Report </p>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
+                        <li class="nav-item">
+                            <a href="{{ route('daily-report') }}"
+                               class="nav-link {{ Request::is('daily-report*') ? 'active' : '' }}">
+                                <i class="nav-icon far fa-fw  fa-calendar-alt"></i>
+                                <p>Daily Report </p>
+                            </a>
+                        </li>
 
-                        {{--                        <li class="nav-header">LAPORAN</li>--}}
+                        <li class="nav-header">REPORT</li>
 
-                        {{--                        <li class="nav-item">--}}
-                        {{--                            <a href="{{ route('operation.reporting.index') }}"--}}
-                        {{--                               class="nav-link {{ Request::is('laporan/pegawaibulanan*') ? 'active' : '' }}">--}}
-                        {{--                                <i class="nav-icon far fa-fw  fa-copy"></i>--}}
-
-                        {{--                                --}}{{-- <i class="far fa-copy"></i> --}}
-                        {{--                                <p>Pegawai Perbulan </p>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
+                        <li class="nav-item">
+                            <a href="{{ route('monthly-report') }}"
+                               class="nav-link {{ Request::is('monthly-report*') ? 'active' : '' }}">
+                                <i class="nav-icon far fa-fw  fa-copy"></i>
+                                <p>Monthly Report </p>
+                            </a>
+                        </li>
 
                     </ul>
                 </nav>
