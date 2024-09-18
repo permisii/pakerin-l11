@@ -9,9 +9,23 @@ use App\Http\Resources\UnitResource;
 use App\Http\Resources\UserResource;
 use App\Models\Unit;
 use App\Models\User;
+use App\Support\Enums\IntentEnum;
+use App\Traits\Controllers\Searchable;
+use Illuminate\Http\Request;
 
 class UserController extends Controller {
-    public function index(UsersDataTable $dataTable) {
+    use Searchable;
+
+    public function index(Request $request, UsersDataTable $dataTable) {
+        $intent = $request->get('intent');
+
+        switch ($intent) {
+            case IntentEnum::USER_SEARCH_USERS->value:
+                $users = $this->search($request, User::class, ['name', 'email']);
+
+                return UserResource::collection($users);
+        }
+
         $units = Unit::all();
         $this->setBreadcrumbs([
             'Home' => route('dashboard'),

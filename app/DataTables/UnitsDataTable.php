@@ -42,7 +42,7 @@ class UnitsDataTable extends DataTable {
             ->selectStyleSingle()
             ->buttons([
                 Button::make([
-                    'text' => '<i class="fas fa-plus"></i> Tambah Unit',
+                    'text' => '<i class="fas fa-plus"></i> Add Unit',
                     'action' => 'function() {
                         window.location.href = "' . route('units.create') . '";
                     }',

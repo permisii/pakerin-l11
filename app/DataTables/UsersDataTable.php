@@ -55,7 +55,7 @@ class UsersDataTable extends DataTable {
             ->addTableClass('w-100')
             ->buttons([
                 Button::make([
-                    'text' => '<i class="fas fa-plus"></i> Tambah User',
+                    'text' => '<i class="fas fa-plus"></i> Add User',
                     'action' => 'function() {
                         window.location.href = "' . route('users.create') . '";
                     }',

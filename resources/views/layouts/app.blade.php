@@ -77,14 +77,14 @@
                             </a>
                         </li>
 
-                        {{--                        <li class="nav-header">OPERASIONAL</li>--}}
-                        {{--                        <li class="nav-item">--}}
-                        {{--                            <a href="{{ route('operation.instruksikerja.index') }}"--}}
-                        {{--                               class="nav-link {{ Request::is('operation/instruksikerja*') ? 'active' : '' }}">--}}
-                        {{--                                <i class="nav-icon far fa-fw  fa-calendar-alt"></i>--}}
-                        {{--                                <p>Instruksi Kerja </p>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
+                        <li class="nav-header">OPERASIONAL</li>
+                        <li class="nav-item">
+                            <a href="{{ route('work-instructions.index') }}"
+                               class="nav-link {{ Request::is('work-instructions*') ? 'active' : '' }}">
+                                <i class="nav-icon far fa-fw  fa-calendar-alt"></i>
+                                <p>Instruksi Kerja </p>
+                            </a>
+                        </li>
 
                         {{--                        <li class="nav-item">--}}
                         {{--                            <a href="{{ route('operation.reporting.index') }}"--}}

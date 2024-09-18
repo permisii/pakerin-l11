@@ -19,6 +19,8 @@
     <link rel="stylesheet"
           href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('select2/select2.min.css') }}">
+
     @yield('css')
 
     @yield('style')
@@ -56,6 +58,7 @@
 <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script src="{{ asset('select2/select2.min.js') }}"></script>
 @yield('scripts')
 
 @include('layouts.validation_alert')

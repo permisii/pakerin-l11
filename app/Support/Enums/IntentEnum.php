@@ -2,6 +2,6 @@
 
 namespace App\Support\Enums;
 
-enum IntentEnum {
-    case USER_GET_DATATABLE_DATA;
+enum IntentEnum: string {
+    case USER_SEARCH_USERS = 'USER_SEARCH_USERS';
 }
