@@ -36,9 +36,10 @@ class DailyReportsDataTable extends DataTable {
     }
 
     public function query(WorkInstruction $model): QueryBuilder {
+        $date_filter = request('date_filter', date('Y-m'));
+
         return $model->newQuery()
-            ->whereMonth('work_date', now()->month)
-            ->whereYear('work_date', now()->year);
+            ->where('work_date', 'like', $date_filter . '%');
     }
 
     public function html(): HtmlBuilder {
