@@ -8,11 +8,10 @@
                 <span class="text-bold">Daily</span><span style="font-weight: 100">Operation</span>
             </a>
         </div>
-        <!-- /.login-logo -->
         <div class="card rounded rounded-lg">
             <div class="card-body login-card-body container-fluid">
                 <img class="text-center d-block justify-content-center py-3 mx-auto w-75"
-                     src="{{ asset('adminlte/dist/img/pakerin.svg') }}">
+                     src="{{ asset('adminlte/dist/img/pakerin.svg') }}" alt="company logo" />
                 <form action="{{ route('login') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
@@ -34,11 +33,9 @@
                     </div>
                     <div class="row">
 
-                        <!-- /.col -->
                         <div class="col-12">
                             <button class="btn btn-primary btn-block">Sign In</button>
                         </div>
-                        <!-- /.col -->
                     </div>
                 </form>
 
@@ -47,7 +44,6 @@
                 </p>
 
             </div>
-            <!-- /.login-card-body -->
         </div>
     </div>
 
