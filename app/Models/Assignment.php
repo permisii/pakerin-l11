@@ -17,6 +17,7 @@ class Assignment extends Model {
         'material',
         'description',
         'status',
+        'percentage',
         'created_by',
         'updated_by',
     ];

@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Assignment;
+use App\Models\WorkInstruction;
 use App\Support\Enums\AssignmentStatusEnum;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Log;
@@ -62,22 +63,30 @@ class AssignmentsDataTable extends DataTable {
      * Optional method if you want to use the html builder.
      */
     public function html(): HtmlBuilder {
+        $workInstructionId = request()->route('work_instruction') ? request()->route('work_instruction')->id : null;
+
         return $this->builder()
             ->setTableId('assignments-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1)
             ->selectStyleSingle()
+            ->dom('<"d-block mb-2"B><"d-flex justify-content-between"lf>rtip')
+            ->addTableClass('w-100')
             ->buttons([
-                Button::make('excel'),
-                Button::make('csv'),
-                Button::make('pdf'),
-                Button::make('print'),
+                Button::make([
+                    'text' => '<i class="fas fa-plus"></i> Add Assignment',
+                    'action' => 'function() {
+                        window.location.href = "' . route('work-instructions.assignments.create', $workInstructionId) . '";
+                    }',
+                    'className' => 'btn btn-default text-blue',
+                ]),
             ]);
     }
 
     /**
      * Get the dataTable columns definition.
+     * $this->workInstruction = $workInstruction;
      */
     public function getColumns(): array {
         return [

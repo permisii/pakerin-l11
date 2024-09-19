@@ -25,6 +25,7 @@ class AssignmentFactory extends Factory {
             'material' => $this->faker->text,
             'description' => $this->faker->text,
             'status' => AssignmentStatusEnum::randomValue(),
+            'percentage' => $this->faker->numberBetween(0, 100),
             'created_by' => 1,
             'updated_by' => 1,
         ];

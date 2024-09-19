@@ -19,9 +19,9 @@ return new class extends Migration {
             $table->text('material');
             $table->text('description');
             $table->tinyInteger('status')->default(AssignmentStatusEnum::Draft);
+            $table->tinyInteger('percentage')->default(0);
             $table->foreignId('created_by')->constrained('users');
             $table->foreignId('updated_by')->constrained('users');
-
             $table->timestamps();
         });
     }

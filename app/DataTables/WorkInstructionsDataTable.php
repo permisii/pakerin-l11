@@ -42,6 +42,12 @@ class WorkInstructionsDataTable extends DataTable {
      * Get the query source of dataTable.
      */
     public function query(WorkInstruction $model): QueryBuilder {
+        $date_filter = request('date_filter');
+
+        if ($date_filter) {
+            $model = $model->where('work_date', 'like', $date_filter . '%');
+        }
+
         return $model->newQuery()->with('user');
     }
 

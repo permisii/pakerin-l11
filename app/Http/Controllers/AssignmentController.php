@@ -18,20 +18,31 @@ class AssignmentController extends Controller {
             'Assignments' => '',
         ]);
 
+        $this->setParams([
+            'title' => 'Assignments',
+            'subtitle' => $workInstruction->id,
+        ]);
+
         return $dataTable->with('work_instruction_id', $workInstruction->id)->render('assignments.index', [
             'breadcrumbs' => $this->getBreadcrumbs(),
             'workInstruction' => $workInstruction,
+            'params' => $this->getParams(),
         ]);
     }
 
     public function create(WorkInstruction $workInstruction) {
-        $assignments = AssignmentResource::collection(Assignment::all());
+        $assignments = AssignmentResource::collection($workInstruction->assignments()->get());
 
         $this->setBreadcrumbs([
             'Home' => route('dashboard'),
             'Work Instructions' => route('work-instructions.index'),
             $workInstruction->id => route('work-instructions.show', $workInstruction->id),
             'Create Assignment' => '',
+        ]);
+
+        $this->setParams([
+            'title' => 'Create Assignment',
+            'subtitle' => $workInstruction->work_date,
         ]);
 
         return $this->renderView('assignments.create', [
@@ -41,11 +52,10 @@ class AssignmentController extends Controller {
     }
 
     public function store(StoreAssignmentRequest $request, WorkInstruction $workInstruction) {
-        $assignment = new Assignment($request->validated());
-        $assignment->work_instruction_id = $workInstruction->id;
-        $assignment->save();
+        $workInstruction->assignments()->create($request->validated());
 
-        return redirect()->route('work-instructions.assignments.index', $workInstruction->id)->with('success', 'Assignment created.');
+        return redirect()->route('work-instructions.assignments.index', $workInstruction->id)
+            ->with('success', 'Assignment created.');
     }
 
     public function show(WorkInstruction $workInstruction, Assignment $assignment) {
@@ -56,6 +66,11 @@ class AssignmentController extends Controller {
             'Work Instructions' => route('work-instructions.index'),
             $workInstruction->id => route('work-instructions.show', $workInstruction->id),
             $assignment->name => '',
+        ]);
+
+        $this->setParams([
+            'title' => 'Assignment',
+            'subtitle' => $workInstruction->work_date,
         ]);
 
         return $this->renderView('assignments.show', [
@@ -73,6 +88,11 @@ class AssignmentController extends Controller {
             $workInstruction->id => route('work-instructions.show', $workInstruction->id),
             $assignment->name => route('work-instructions.assignments.show', [$workInstruction->id, $assignment->id]),
             'Edit' => '',
+        ]);
+
+        $this->setParams([
+            'title' => 'Edit Assignment',
+            'subtitle' => $workInstruction->work_date,
         ]);
 
         return $this->renderView('assignments.edit', [
