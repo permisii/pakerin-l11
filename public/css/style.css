@@ -59,7 +59,7 @@ select.form-control-sm ~ .select2-container--default {
 
 /* Datatable */
 .action-btn {
-    padding: 0.5rem 1rem; /* Adjust padding as needed */
+    padding: 0.3rem .7rem; /* Adjust padding as needed */
     gap: 0.5rem; /* Adjust gap as needed */
     align-items: center;
     justify-content: center;
