@@ -17,8 +17,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('units', UnitController::class);
     Route::resource('work-instructions', WorkInstructionController::class);
     Route::resource('work-instructions.assignments', AssignmentController::class);
-    Route::get('daily-report', DailyReportController::class)->name('daily-report');
-    Route::get('monthly-report', MonthlyReportController::class)->name('monthly-report');
+    Route::get('daily-reports', DailyReportController::class)->name('daily-report.index');
+    Route::get('monthly-reports', MonthlyReportController::class)->name('monthly-report.index');
 });
 
 Route::view('/', 'welcome')->name('home');

@@ -87,7 +87,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('daily-report') }}"
+                            <a href="{{ route('daily-report.index') }}"
                                class="nav-link {{ Request::is('daily-report*') ? 'active' : '' }}">
                                 <i class="nav-icon far fa-fw  fa-calendar-alt"></i>
                                 <p>Daily Report </p>
@@ -97,7 +97,7 @@
                         <li class="nav-header">REPORT</li>
 
                         <li class="nav-item">
-                            <a href="{{ route('monthly-report') }}"
+                            <a href="{{ route('monthly-report.index') }}"
                                class="nav-link {{ Request::is('monthly-report*') ? 'active' : '' }}">
                                 <i class="nav-icon far fa-fw  fa-copy"></i>
                                 <p>Monthly Report </p>
