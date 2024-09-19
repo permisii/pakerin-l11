@@ -14,6 +14,11 @@ class DashboardController extends Controller {
             'Home' => '',
         ]);
 
+        $this->setParams([
+            'title' => 'Dashboard',
+            'subtitle' => 'Welcome to the dashboard',
+        ]);
+
         $users_count = User::count();
 
         return $this->renderView('dashboard.index', ['breadcrumbs' => $this->getBreadcrumbs(), 'users_count' => $users_count]);

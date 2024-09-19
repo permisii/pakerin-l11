@@ -1,7 +1,7 @@
 <tr>
     <th>
         <div class="btn-group">
-            <a href="{{ route('users.show', 1) }}"
+            <a href="{{ route('users.show', $id) }}"
                class="btn btn-sm btn-default text-blue action-btn">
                 <i class="fas fa-info-circle"></i>
                 Detail

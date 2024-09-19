@@ -15,16 +15,24 @@ class WorkInstructionController extends Controller {
             'Work Instructions' => '',
         ]);
 
-        return $dataTable->render('work-instructions.index', ['breadcrumbs' => $this->getBreadcrumbs()]);
+        $this->setParams([
+            'title' => 'Work Instructions',
+            'subtitle' => 'List of work instructions',
+        ]);
+
+        return $dataTable->render('work-instructions.index', ['params' => $this->getParams(), 'breadcrumbs' => $this->getBreadcrumbs()]);
     }
 
     public function create() {
-        $workInstruction = WorkInstructionResource::collection(WorkInstruction::all());
-
         $this->setBreadcrumbs([
             'Home' => route('dashboard'),
             'Work Instructions' => route('work-instructions.index'),
             'Create' => '',
+        ]);
+
+        $this->setParams([
+            'title' => 'Create Work Instruction',
+            'subtitle' => 'Create a new work instruction',
         ]);
 
         return $this->renderView('work-instructions.create');
@@ -45,6 +53,11 @@ class WorkInstructionController extends Controller {
             $workInstruction->id => '',
         ]);
 
+        $this->setParams([
+            'title' => 'Work Instruction',
+            'subtitle' => 'Work instruction details',
+        ]);
+
         return $this->renderView('work-instructions.show', ['workInstruction' => $workInstruction]);
     }
 
@@ -56,6 +69,11 @@ class WorkInstructionController extends Controller {
             'Work Instructions' => route('work-instructions.index'),
             $workInstruction->name => route('work-instructions.show', $workInstruction->id),
             'Edit' => '',
+        ]);
+
+        $this->setParams([
+            'title' => 'Edit Work Instruction',
+            'subtitle' => 'Edit work instruction details',
         ]);
 
         return $this->renderView('work-instructions.edit', ['workInstruction' => $workInstruction]);

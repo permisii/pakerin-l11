@@ -27,12 +27,18 @@ class UserController extends Controller {
         }
 
         $units = Unit::all();
+
         $this->setBreadcrumbs([
             'Home' => route('dashboard'),
             'Users' => '',
         ]);
 
-        return $dataTable->render('users.index', ['units' => $units, 'breadcrumbs' => $this->getBreadcrumbs()]);
+        $this->setParams([
+            'title' => 'Users',
+            'subtitle' => 'List of users',
+        ]);
+
+        return $dataTable->render('users.index', ['units' => $units, 'params' => $this->getParams(), 'breadcrumbs' => $this->getBreadcrumbs()]);
     }
 
     public function create() {
@@ -42,6 +48,11 @@ class UserController extends Controller {
             'Home' => route('dashboard'),
             'Users' => route('users.index'),
             'Create' => '',
+        ]);
+
+        $this->setParams([
+            'title' => 'Create User',
+            'subtitle' => 'Create a new user',
         ]);
 
         return $this->renderView('users.create', ['units' => $units]);
@@ -62,6 +73,11 @@ class UserController extends Controller {
             $user->name => '',
         ]);
 
+        $this->setParams([
+            'title' => 'User',
+            'subtitle' => 'User details',
+        ]);
+
         return $this->renderView('users.show', ['user' => $user]);
     }
 
@@ -74,6 +90,11 @@ class UserController extends Controller {
             'Users' => route('users.index'),
             $user->name => route('users.show', $user->id),
             'Edit' => '',
+        ]);
+
+        $this->setParams([
+            'title' => 'Edit User',
+            'subtitle' => 'Edit user details',
         ]);
 
         return $this->renderView('users.edit', ['user' => $user, 'units' => $units]);

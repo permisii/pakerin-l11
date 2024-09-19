@@ -103,7 +103,6 @@
                                 <p>Monthly Report </p>
                             </a>
                         </li>
-
                     </ul>
                 </nav>
             </div>
@@ -118,7 +117,6 @@
                                     <small class="text-gray" style="font-size: 70%">| {{ $params['subtitle'] }}</small>
                                 @endisset
                             </h1>
-
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">

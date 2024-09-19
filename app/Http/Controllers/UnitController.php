@@ -15,7 +15,12 @@ class UnitController extends Controller {
             'Units' => '',
         ]);
 
-        return $dataTable->render('units.index', ['breadcrumbs' => $this->getBreadcrumbs()]);
+        $this->setParams([
+            'title' => 'Units',
+            'subtitle' => 'List of units',
+        ]);
+
+        return $dataTable->render('units.index', ['breadcrumbs' => $this->getBreadcrumbs(), 'params' => $this->getParams()]);
     }
 
     public function create() {
@@ -25,6 +30,11 @@ class UnitController extends Controller {
             'Home' => route('dashboard'),
             'Units' => route('units.index'),
             'Create' => '',
+        ]);
+
+        $this->setParams([
+            'title' => 'Create Unit',
+            'subtitle' => 'Create a new unit',
         ]);
 
         return $this->renderView('units.create', ['units' => $units]);
@@ -37,12 +47,17 @@ class UnitController extends Controller {
     }
 
     public function show(Unit $unit) {
-        $unit = new UnitResource($unit->load('unit', 'updatedBy', 'createdBy'));
+        $unit = new UnitResource($unit);
 
         $this->setBreadcrumbs([
             'Home' => route('dashboard'),
             'Units' => route('units.index'),
             $unit->name => '',
+        ]);
+
+        $this->setParams([
+            'title' => 'Unit',
+            'subtitle' => 'Unit details',
         ]);
 
         return $this->renderView('units.show', ['unit' => $unit]);
@@ -56,6 +71,11 @@ class UnitController extends Controller {
             'Units' => route('units.index'),
             $unit->name => route('units.show', $unit->id),
             'Edit' => '',
+        ]);
+
+        $this->setParams([
+            'title' => 'Edit Unit',
+            'subtitle' => 'Edit unit details',
         ]);
 
         return $this->renderView('units.edit', ['unit' => $unit]);

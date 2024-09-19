@@ -13,11 +13,17 @@
                     <div class="col-md-6">
                         <p><strong>Name:</strong> {{ $user->name }}</p>
                         <p><strong>NIP:</strong> {{ $user->nip }}</p>
-                        <p><strong>Unit:</strong> {{ $user->unit->name }}</p>
+                        <p><strong>Unit:</strong> {{ $user->unit?->name }}</p>
                     </div>
                     <div class="col-md-6">
                         <p><strong>Email:</strong> {{ $user->email }}</p>
-                        <p><strong>Active:</strong> <span class="badge badge-success">YES</span></p>
+                        <p><strong>Active:</strong>
+                            @if($user->active)
+                                <span class="badge badge-success">Yes</span>
+                            @else
+                                <span class="badge badge-danger">No</span>
+                            @endif
+                        </p>
                     </div>
                 </div>
             </div>
