@@ -15,7 +15,7 @@
                 <form action="{{ route('login') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="NIP" value=""
+                        <input type="text" class="form-control" placeholder="NIP" value="1"
                                name="nip" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -24,7 +24,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password" name="password" required>
+                        <input type="password" class="form-control" placeholder="Password" name="password"
+                               value="password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
